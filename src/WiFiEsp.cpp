@@ -31,13 +31,16 @@ WiFiEspClass::WiFiEspClass()
 
 }
 
-void WiFiEspClass::init(Stream* espSerial)
+void WiFiEspClass::init(Stream* espSerial, delay_cb delay_callback)
 {
     LOGINFO(F("Initializing ESP module"));
-	EspDrv::wifiDriverInit(espSerial);
+	EspDrv::wifiDriverInit(espSerial, delay_callback);
 }
 
-
+void WiFiEspClass::registerDelayFunction(delay_cb delayCb)
+{
+	EspDrv::registerDelayFunction(delayCb);
+}
 
 char* WiFiEspClass::firmwareVersion()
 {
@@ -61,7 +64,7 @@ int WiFiEspClass::beginAP(const char* ssid, uint8_t channel, const char* pwd, ui
         espMode = 2;
     else
         espMode = 3;
-    
+
     if (EspDrv::wifiStartAP(ssid, pwd, channel, enc, espMode))
 		return WL_CONNECTED;
 

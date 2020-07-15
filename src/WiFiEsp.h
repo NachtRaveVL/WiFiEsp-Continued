@@ -31,7 +31,6 @@ along with The Arduino WiFiEsp library.  If not, see
 #include "utility/RingBuffer.h"
 #include "utility/debug.h"
 
-
 class WiFiEspClass
 {
 
@@ -48,7 +47,9 @@ public:
 	*
 	* param espSerial: the serial interface (HW or SW) used to communicate with the ESP module
 	*/
-	static void init(Stream* espSerial);
+	static void init(Stream* espSerial, delay_cb delay_callback = NULL);
+
+	void registerDelayFunction(delay_cb delayCb);
 
 
 	/**

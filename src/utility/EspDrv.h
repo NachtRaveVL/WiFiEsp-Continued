@@ -59,6 +59,7 @@ along with The Arduino WiFiEsp library.  If not, see
 
 typedef enum eProtMode {TCP_MODE, UDP_MODE, SSL_MODE} tProtMode;
 
+typedef void (*delay_cb)(uint32_t delayTimeout);
 
 typedef enum {
         WL_FAILURE = -1,
@@ -120,8 +121,9 @@ class EspDrv
 
 public:
 
-    static void wifiDriverInit(Stream *espSerial);
+    static void wifiDriverInit(Stream *espSerial, delay_cb delay_callback);
 
+    static void registerDelayFunction(delay_cb delayCb);
 
     /* Start Wifi connection with passphrase
      *
@@ -287,6 +289,7 @@ public:
 
 private:
 	static Stream *espSerial;
+    static delay_cb delayCallback;
 
 	static long _bufPos;
 	static uint8_t _connId;
@@ -328,6 +331,7 @@ private:
 
 	static int timedRead();
 
+    static void defaultDelayCallback(uint32_t delayTimeout);
 
 	friend class WiFiEsp;
 	friend class WiFiEspServer;
