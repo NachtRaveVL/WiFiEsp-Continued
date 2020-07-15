@@ -74,14 +74,7 @@ void EspDrv::wifiDriverInit(Stream *espSerial, delay_cb delay_callback)
 
 	EspDrv::espSerial = espSerial;
 
-	if (delay_callback)
-	{
-		delayCallback = delay_callback;
-	}
-	else
-	{
-		delayCallback = defaultDelayCallback;
-	}
+	registerDelayFunction(delay_callback);
 
 	bool initOK = false;
 
@@ -127,7 +120,14 @@ void EspDrv::defaultDelayCallback(uint32_t delayTimeout)
 
 void EspDrv::registerDelayFunction(delay_cb delayCb)
 {
-	delayCallback = delayCb;
+	if (delayCb)
+	{
+		delayCallback = delayCb;
+	}
+	else
+	{
+		delayCallback = defaultDelayCallback;
+	}
 }
 
 void EspDrv::reset()
