@@ -26,17 +26,19 @@ along with The Arduino WiFiEsp library.  If not, see
 WiFiEspUDP::WiFiEspUDP() : _sock(NO_SOCKET_AVAIL) {}
 
 
-
+uint16_t WiFiEspUDP::getPort()
+{
+	return _port;
+}
 
 /* Start WiFiUDP socket, listening at local port PORT */
-
 uint8_t WiFiEspUDP::begin(uint16_t port)
 {
     uint8_t sock = WiFiEspClass::getFreeSocket();
     if (sock != NO_SOCKET_AVAIL)
     {
         EspDrv::startClient("0", port, sock, UDP_MODE);
-		
+
         WiFiEspClass::allocateSocket(sock);  // allocating the socket for the listener
         WiFiEspClass::_server_port[sock] = port;
         _sock = sock;
@@ -72,7 +74,7 @@ void WiFiEspUDP::stop()
 
       // Discard data that might be in the incoming buffer
       flush();
-      
+
       // Stop the listener and return the socket to the pool
 	  EspDrv::stopClient(_sock);
       WiFiEspClass::_state[_sock] = NA_STATE;
@@ -139,7 +141,7 @@ int WiFiEspUDP::read()
 		return -1;
 
 	bool connClose = false;
-	
+
     // Read the data and handle the timeout condition
 	if (! EspDrv::getData(_sock, &b, false, &connClose))
       return -1;  // Timeout occured
