@@ -52,7 +52,7 @@ typedef enum
 Stream *EspDrv::espSerial;
 delay_cb EspDrv::delayCallback = NULL;
 
-RingBuffer EspDrv::ringBuf(32);
+EspRingBuffer EspDrv::ringBuf(32);
 
 // Array of data to cache the information related to the networks discovered
 char 	EspDrv::_networkSsid[][WL_SSID_MAX_LENGTH] = {{"1"},{"2"},{"3"},{"4"},{"5"}};
