@@ -194,7 +194,7 @@ bool EspDrv::wifiConnect(const char* ssid, const char* passphrase)
 }
 
 
-bool EspDrv::wifiStartAP(const char* ssid, const char* pwd, uint8_t channel, uint8_t enc, uint8_t espMode)
+bool EspDrv::wifiStartAP(const char* ssid, const char* pwd, uint8_t channel, uint8_t enc, uint8_t espMode, bool ssidHidden, uint8_t maxConn)
 {
 	LOGDEBUG(F("> wifiStartAP"));
 
@@ -556,7 +556,7 @@ bool EspDrv::getGateway(IPAddress& gw)
 	return false;
 }
 
-char* EspDrv::getSSIDNetoworks(uint8_t networkItem)
+char* EspDrv::getSSIDNetworks(uint8_t networkItem)
 {
 	if (networkItem >= WL_NETWORKS_LIST_MAXNUM)
 		return NULL;
@@ -564,7 +564,7 @@ char* EspDrv::getSSIDNetoworks(uint8_t networkItem)
 	return _networkSsid[networkItem];
 }
 
-uint8_t EspDrv::getEncTypeNetowrks(uint8_t networkItem)
+uint8_t EspDrv::getEncTypeNetworks(uint8_t networkItem)
 {
 	if (networkItem >= WL_NETWORKS_LIST_MAXNUM)
 		return 0;
@@ -572,7 +572,7 @@ uint8_t EspDrv::getEncTypeNetowrks(uint8_t networkItem)
     return _networkEncr[networkItem];
 }
 
-int32_t EspDrv::getRSSINetoworks(uint8_t networkItem)
+int32_t EspDrv::getRSSINetworks(uint8_t networkItem)
 {
 	if (networkItem >= WL_NETWORKS_LIST_MAXNUM)
 		return 0;
@@ -591,8 +591,6 @@ char* EspDrv::getFwVersion()
     return fwVersion;
 }
 
-
-
 bool EspDrv::ping(const char *host)
 {
 	LOGDEBUG(F("> ping"));
@@ -604,8 +602,6 @@ bool EspDrv::ping(const char *host)
 
 	return false;
 }
-
-
 
 // Start server TCP on port specified
 bool EspDrv::startServer(uint16_t port, uint8_t sock)
