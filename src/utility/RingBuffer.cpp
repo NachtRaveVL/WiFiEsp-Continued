@@ -50,7 +50,10 @@ void RingBuffer::push(char c)
 		ringBufP = ringBuf;
 }
 
-
+int RingBuffer::getPos()
+{
+	return ringBufP - ringBuf;
+}
 
 bool RingBuffer::endsWith(const char* str)
 {

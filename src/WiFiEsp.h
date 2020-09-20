@@ -210,6 +210,16 @@ public:
      */
     int32_t RSSI(uint8_t networkItem);
 
+	/*
+	 * Return the channel of the networks discovered during the scanNetworks
+	 *
+	 * param networkItem: specify from which network item want to get the information
+	 *
+	 * return: Channel of the specified item on the networks scanned list
+	 */
+	int32_t Channel(uint8_t networkItem);
+
+	IPAddress* getClientIPs(uint8_t& length);
 
 	// NOT IMPLEMENTED
 	//int hostByName(const char* aHostname, IPAddress& aResult);
@@ -230,13 +240,13 @@ public:
 	* param enc: encryption type (enum wl_enc_type)
 	* param apOnly: Set to false if you want to run AP and Station modes simultaneously
 	*/
-	int beginAP(const char* ssid, uint8_t channel, const char* pwd, uint8_t enc, bool apOnly=true);
+	int beginAP(const char* ssid, uint8_t channel, const char* pwd, uint8_t enc, bool apOnly=true, bool ssidHidden = false);
 
 	/*
 	* Start the ESP access point with open security.
 	*/
 	int beginAP(const char* ssid);
-	int beginAP(const char* ssid, uint8_t channel);
+	int beginAP(const char* ssid, uint8_t channel, bool ssidHidden = false);
 
 	/**
 	* Change IP address of the AP
