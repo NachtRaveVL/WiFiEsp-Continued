@@ -195,24 +195,17 @@ IPAddress* WiFiEspClass::getClientIPs(uint8_t& length)
 // Non standard methods
 ////////////////////////////////////////////////////////////////////////////
 
-void WiFiEspClass::reset(void)
+void WiFiEspClass::reset(uint8_t rstpin)
 {
+	if (rstpin > 0) {
+		pinMode(rstpin, OUTPUT);
+		digitalWrite(rstpin, LOW);
+		delay(100);
+		pinMode(rstpin, INPUT_PULLUP);
+		delay(500);
+	}
 	EspDrv::reset();
 }
-
-
-/*
-void ESP8266::hardReset(void)
-{
-connected = false;
-strcpy(ip, "");
-digitalWrite(ESP8266_RST, LOW);
-delay(ESP8266_HARD_RESET_DURATION);
-digitalWrite(ESP8266_RST, HIGH);
-delay(ESP8266_HARD_RESET_DURATION);
-}
-*/
-
 
 bool WiFiEspClass::ping(const char *host)
 {

@@ -260,7 +260,7 @@ public:
 	/**
 	* Restart the ESP module.
 	*/
-	void reset();
+	void reset(uint8_t rstpin = 0);
 
 	/**
 	* Ping a host.
