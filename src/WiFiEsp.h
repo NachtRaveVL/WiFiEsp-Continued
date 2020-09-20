@@ -26,6 +26,7 @@ along with The Arduino WiFiEsp library.  If not, see
 
 
 #include "WiFiEspClient.h"
+#include "WiFiEspSecureClient.h"
 #include "WiFiEspServer.h"
 #include "utility/EspDrv.h"
 #include "utility/RingBuffer.h"
@@ -50,7 +51,6 @@ public:
 	static void init(Stream* espSerial, delay_cb delay_callback = NULL);
 
 	void registerDelayFunction(delay_cb delayCb);
-
 
 	/**
 	* Get firmware version
@@ -259,6 +259,7 @@ public:
 
 
 	friend class WiFiEspClient;
+	friend class WiFiEspSecureClient;
 	friend class WiFiEspServer;
 	friend class WiFiEspUDP;
 
