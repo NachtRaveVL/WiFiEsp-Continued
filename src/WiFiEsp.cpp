@@ -195,17 +195,16 @@ IPAddress* WiFiEspClass::getClientIPs(uint8_t& length)
 // Non standard methods
 ////////////////////////////////////////////////////////////////////////////
 
-void WiFiEspClass::reset(uint8_t rstpin)
+void WiFiEspClass::reset()
 {
-	if (rstpin > 0) {
-		pinMode(rstpin, OUTPUT);
-		digitalWrite(rstpin, LOW);
-		delay(100);
-		pinMode(rstpin, INPUT_PULLUP);
-		delay(500);
-	}
 	EspDrv::reset();
 }
+
+void WiFiEspClass::setHWreset(byte pin)
+{
+	EspDrv::setHWreset(pin);
+}
+
 
 bool WiFiEspClass::ping(const char *host)
 {

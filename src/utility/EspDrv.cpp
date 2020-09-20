@@ -72,6 +72,7 @@ uint8_t EspDrv::_connId=0;
 uint16_t EspDrv::_remotePort  =0;
 uint8_t EspDrv::_remoteIp[] = {0};
 
+uint8_t EspDrv::_resetPin = 0;
 
 void EspDrv::wifiDriverInit(Stream *espSerial, delay_cb delay_callback)
 {
@@ -135,11 +136,23 @@ void EspDrv::registerDelayFunction(delay_cb delayCb)
 	}
 }
 
-void EspDrv::reset()
-{
-	LOGDEBUG(F("> reset"));
+void EspDrv::setHWreset(byte pin) {
+	_resetPin = pin;
+}
 
-	sendCmd(F("AT+RST"));
+void EspDrv::reset() {
+	if (_resetPin > 0) {
+		LOGDEBUG(F("> hard reset"));
+		pinMode(_resetPin, OUTPUT);
+		digitalWrite(_resetPin, LOW);
+		delayCallback(100);
+		pinMode(_resetPin, INPUT_PULLUP);
+	}
+	else {
+		LOGDEBUG(F("> soft reset"));
+		sendCmd(F("AT+RST"));
+	}
+
 	delayCallback(3000);
 	espEmptyBuf(false);  // empty dirty characters from the buffer
 
@@ -164,8 +177,6 @@ void EspDrv::reset()
 	sendCmd(F("AT+CWDHCP=1,1"));
 	delayCallback(200);
 }
-
-
 
 bool EspDrv::wifiConnect(const char* ssid, const char* passphrase)
 {

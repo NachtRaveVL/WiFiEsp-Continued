@@ -260,13 +260,18 @@ public:
 	/**
 	* Restart the ESP module.
 	*/
-	void reset(uint8_t rstpin = 0);
+	void reset();
 
 	/**
 	* Ping a host.
 	*/
 	bool ping(const char *host);
 
+
+	/**
+	* Set hard reset pin
+	*/
+	void setHWreset(byte pin);
 
 	friend class WiFiEspClient;
 	friend class WiFiEspSecureClient;
