@@ -22,6 +22,11 @@ along with The Arduino WiFiEsp library.  If not, see
 #include "utility/EspDrv.h"
 #include "utility/debug.h"
 
+#include <stdio.h>
+#include <stdarg.h>
+#if defined(__SAMD21G18A__) || defined(__SAM3X8E__) || defined(__STM32F1__)
+#define vsnprintf_P vsnprintf
+#endif
 
 #define NUMESPTAGS 5
 
