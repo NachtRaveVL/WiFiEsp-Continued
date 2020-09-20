@@ -10,7 +10,7 @@
 #include "WiFiEsp.h"
 
 // Emulate Serial1 on pins 6/7 if not present
-#ifndef HAVE_HWSERIAL1
+#ifndef SERIAL_PORT_HARDWARE1
 #include "SoftwareSerial.h"
 SoftwareSerial Serial1(6, 7); // RX, TX
 #endif
