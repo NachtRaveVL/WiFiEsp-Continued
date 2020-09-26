@@ -267,12 +267,6 @@ public:
 	*/
 	bool ping(const char *host);
 
-
-	/**
-	* Set hard reset pin
-	*/
-	void setHWreset(byte pin);
-
 	friend class WiFiEspClient;
 	friend class WiFiEspSecureClient;
 	friend class WiFiEspServer;

@@ -292,7 +292,6 @@ public:
 
 	static bool ping(const char *host);
   static void reset();
-  static void setHWreset(byte pin);
 
     static void getRemoteIpAddress(IPAddress& ip);
     static uint16_t getRemotePort();
@@ -303,7 +302,6 @@ public:
 private:
 	static Stream *espSerial;
   static delay_cb delayCallback;
-  static uint8_t  _resetPin;
 
 	static long _bufPos;
 	static uint8_t _connId;

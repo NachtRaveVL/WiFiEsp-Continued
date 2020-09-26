@@ -200,12 +200,6 @@ void WiFiEspClass::reset()
 	EspDrv::reset();
 }
 
-void WiFiEspClass::setHWreset(byte pin)
-{
-	EspDrv::setHWreset(pin);
-}
-
-
 bool WiFiEspClass::ping(const char *host)
 {
 	return EspDrv::ping(host);

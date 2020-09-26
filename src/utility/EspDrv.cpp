@@ -72,8 +72,6 @@ uint8_t EspDrv::_connId=0;
 uint16_t EspDrv::_remotePort  =0;
 uint8_t EspDrv::_remoteIp[] = {0};
 
-uint8_t EspDrv::_resetPin = 0;
-
 void EspDrv::wifiDriverInit(Stream *espSerial, delay_cb delay_callback)
 {
 	LOGDEBUG(F("> wifiDriverInit"));
@@ -136,22 +134,9 @@ void EspDrv::registerDelayFunction(delay_cb delayCb)
 	}
 }
 
-void EspDrv::setHWreset(byte pin) {
-	_resetPin = pin;
-}
-
 void EspDrv::reset() {
-	if (_resetPin > 0) {
-		LOGDEBUG(F("> hard reset"));
-		pinMode(_resetPin, OUTPUT);
-		digitalWrite(_resetPin, LOW);
-		delayCallback(100);
-		pinMode(_resetPin, INPUT_PULLUP);
-	}
-	else {
-		LOGDEBUG(F("> soft reset"));
-		sendCmd(F("AT+RST"));
-	}
+	LOGDEBUG(F("> soft reset"));
+	sendCmd(F("AT+RST"));
 
 	delayCallback(3000);
 	espEmptyBuf(false);  // empty dirty characters from the buffer
