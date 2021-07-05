@@ -212,8 +212,10 @@ public:
     int32_t RSSI(uint8_t networkItem);
 
 
-	// NOT IMPLEMENTED
-	//int hostByName(const char* aHostname, IPAddress& aResult);
+    /*
+    *
+    */
+    int hostByName(const char* hostname, IPAddress& aResult);
 
 
 
