@@ -251,7 +251,17 @@ public:
      */
     static uint8_t getEncTypeNetowrks(uint8_t networkItem);
 
+    /*
+    * set DNS
+    */
+    static void setDNS(IPAddress dns_server1);
 
+    /*
+    * resolve Hostname
+    */
+    static bool resolve(const char* hostname, IPAddress& result);
+	
+	
     /*
      * Get the firmware version
      */
