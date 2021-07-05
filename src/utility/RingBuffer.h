@@ -19,12 +19,11 @@ along with The Arduino WiFiEsp library.  If not, see
 #ifndef RingBuffer_h
 #define RingBuffer_h
 
-
-class RingBuffer
+class Ring_Buffer
 {
 public:
-	RingBuffer(unsigned int size);
-	~RingBuffer();
+	Ring_Buffer(unsigned int size);
+	~Ring_Buffer();
 
 	void reset();
 	void init();
