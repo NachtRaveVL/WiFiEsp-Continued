@@ -84,6 +84,16 @@ void WiFiEspClass::config(IPAddress ip)
 	EspDrv::config(ip);
 }
 
+void WiFiEspClass::setDNS(IPAddress dns_server1)
+{
+	EspDrv::setDNS(dns_server1);
+}
+
+int WiFiEspClass::hostByName(const char* hostname, IPAddress& result)
+{
+    EspDrv::resolve(hostname, result);
+}
+
 void WiFiEspClass::configAP(IPAddress ip)
 {
 	EspDrv::configAP(ip);
