@@ -561,6 +561,40 @@ int32_t EspDrv::getRSSINetoworks(uint8_t networkItem)
     return _networkRssi[networkItem];
 }
 
+void EspDrv::setDNS(IPAddress dns_server1)
+{
+	LOGDEBUG(F("> setDNS"));
+
+	char buf[16];
+	sprintf_P(buf, PSTR("%d.%d.%d.%d"), dns_server1[0], dns_server1[1], dns_server1[2], dns_server1[3]);
+	int ret = sendCmd(F("AT+CIPDNS_CUR=1,\"%s\""), 2000, buf);
+	delay(500);
+
+	if (ret==TAG_OK)
+	{
+	  LOGINFO1(F("IP DNS set"), buf);
+	}
+}
+
+bool EspDrv::resolve(const char* hostname, IPAddress& result) {
+
+  char buf[16];
+  char cmdBuf[40];
+  
+  LOGDEBUG(F("> resolve ip"));
+
+  sprintf_P(cmdBuf, PSTR("AT+CIPDOMAIN=\"%s\""), hostname);
+  LOGINFO1(F("cmdBuf: "), cmdBuf);
+  
+  if (sendCmdGet(F(cmdBuf), F("+CIPDOMAIN:"), F("\r\n"), buf, sizeof(buf)))  
+   {
+	  result.fromString(buf);
+	  LOGINFO1(F("Resolved hostname IP:"), result);
+	  return true;	   
+   }	   
+  else return false; 
+}
+
 char* EspDrv::getFwVersion()
 {
 	LOGDEBUG(F("> getFwVersion"));
