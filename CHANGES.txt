@@ -1,3 +1,7 @@
+2.3.0 (2021-07-05)
+  * Added WiFiEsp.setDNS(IPAddress dns_server1) method 
+  * Added WiFiEsp.hostByName(const char* hostname, IPAddress& aResult) method 
+
 2.2.2 (2017-11-03)
   * Make SSID a const char * in begin() #116
   * Replace NULL with 0 to avoid compilation warnings
