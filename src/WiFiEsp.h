@@ -92,8 +92,10 @@ public:
 	// NOT IMPLEMENTED
 	//void config(IPAddress local_ip, IPAddress dns_server, IPAddress gateway, IPAddress subnet);
 
-	// NOT IMPLEMENTED
-	//void setDNS(IPAddress dns_server1);
+	/*
+	* Set DNS server
+	*/
+	void setDNS(IPAddress dns_server1);
 
 	// NOT IMPLEMENTED
 	//void setDNS(IPAddress dns_server1, IPAddress dns_server2);
