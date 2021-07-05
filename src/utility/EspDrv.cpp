@@ -19,6 +19,11 @@ along with The Arduino WiFiEsp library.  If not, see
 #include <Arduino.h>
 #include <avr/pgmspace.h>
 
+#include <stdarg.h>  // Mod to work with Arduino DUE
+#if defined(__SAMD21G18A__) || defined(__SAM3X8E__)
+#define vsnprintf_P vsnprintf
+#endif
+
 #include "utility/EspDrv.h"
 #include "utility/debug.h"
 
