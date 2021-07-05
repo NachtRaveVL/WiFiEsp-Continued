@@ -40,7 +40,8 @@ Most of the standard Arduino WiFi library methods are available. Refer to the [W
 - begin() - Not all authentication types
 - disconnect() - YES
 - config()
-- setDNS() - NO (no AT command available)
+- setDNS() - YES
+- hostByname() - YES
 - SSID() - YES
 - BSSID() - YES
 - RSSI() - YES
