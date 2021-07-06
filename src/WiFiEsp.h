@@ -213,8 +213,13 @@ public:
 
 
     /*
-    *
-    */
+     * Return the IP address of a hostmane
+     *
+     * param hostname: hostname from which item want to get the IPaddress
+     * param aResult: a var of the type IPAddress, which will hold the result
+	 *
+     * return: IPAddress
+     */
     int hostByName(const char* hostname, IPAddress& aResult);
 
 
