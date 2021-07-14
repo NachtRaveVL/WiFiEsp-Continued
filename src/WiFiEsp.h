@@ -52,10 +52,16 @@ public:
 
 
 	/**
-	* Get firmware version
+	* Get SDK firmware version
 	*/
 	static char* firmwareVersion();
+	
 
+	/**
+	* Get AT firmware version
+	*/
+	static char* ATfirmwareVersion();
+	
 
 	// NOT IMPLEMENTED
 	//int begin(char* ssid);
