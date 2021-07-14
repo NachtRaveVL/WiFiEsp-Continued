@@ -64,6 +64,7 @@ uint8_t EspDrv::_bssid[] = {0};
 uint8_t EspDrv::_mac[] = {0};
 uint8_t EspDrv::_localIp[] = {0};
 char EspDrv::fwVersion[] = {0};
+char EspDrv::ATfwVersion[] = {0};
 
 long EspDrv::_bufPos=0;
 uint8_t EspDrv::_connId=0;
@@ -606,7 +607,16 @@ char* EspDrv::getFwVersion()
     return fwVersion;
 }
 
+char* EspDrv::getATFwVersion()
+{
+	LOGDEBUG(F("> getATFwVersion"));
 
+	ATfwVersion[0] = 0;
+
+	sendCmdGet(F("AT+GMR"), F("AT version:"), F("\r\n"), ATfwVersion, sizeof(ATfwVersion));
+
+    return ATfwVersion;
+}
 
 bool EspDrv::ping(const char *host)
 {
