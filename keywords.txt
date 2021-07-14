@@ -23,6 +23,7 @@ RingBuffer	KEYWORD1
 #######################################
 
 firmwareVersion	KEYWORD2
+ATfirmwareVersion	KEYWORD2
 status	KEYWORD2
 connect	KEYWORD2
 write	KEYWORD2
