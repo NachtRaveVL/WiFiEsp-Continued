@@ -307,6 +307,9 @@ private:
 
 	// firmware version string
 	static char 	fwVersion[WL_FW_VER_LENGTH];
+	
+	// AT firmware version string
+	static char 	ATfwVersion[WL_FW_VER_LENGTH];	
 
 	// settings of requested network
 	static char 	_networkSsid[WL_NETWORKS_LIST_MAXNUM][WL_SSID_MAX_LENGTH];
