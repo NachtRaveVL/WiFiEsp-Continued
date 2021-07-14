@@ -38,10 +38,15 @@ void WiFiEspClass::init(Stream* espSerial)
 }
 
 
-
 char* WiFiEspClass::firmwareVersion()
 {
 	return EspDrv::getFwVersion();
+}
+
+
+char* WiFiEspClass::ATfirmwareVersion()
+{
+	return EspDrv::getATFwVersion();
 }
 
 
