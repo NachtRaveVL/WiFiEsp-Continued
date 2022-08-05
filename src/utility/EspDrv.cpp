@@ -813,7 +813,6 @@ bool EspDrv::getData(uint8_t connId, uint8_t *data, bool peek, bool* connClose)
 				*data = (char)espSerial->read();
 				_bufPos--;
 			}
-			//Serial.print((char)*data);
 
 			if (_bufPos == 0)
 			{
