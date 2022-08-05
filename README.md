@@ -27,14 +27,14 @@ It is a cheap version of the Arduino WiFi shield that uses an ESP-01 module to p
 
 ## Examples
 
-- [ConnectWPA](https://github.com/bportaluri/WiFiEsp/blob/master/examples/ConnectWPA/ConnectWPA.ino) - Demonstrates how to connect to a network that is encrypted with WPA2 Personal
-- [WebClient](https://github.com/bportaluri/WiFiEsp/blob/master/examples/WebClient/WebClient.ino) - Connect to a remote webserver 
-- [WebClientRepeating](https://github.com/bportaluri/WiFiEsp/blob/master/examples/WebClientRepeating/WebClientRepeating.ino) - Make repeated HTTP calls to a webserver 
-- [WebServer](https://github.com/bportaluri/WiFiEsp/blob/master/examples/WebServer/WebServer.ino) - Serve a webpage from the WiFi shield 
-- [WebServerAP](https://github.com/bportaluri/WiFiEsp/blob/master/examples/WebServerAP/WebServerAP.ino) - Serve a webpage from the WiFi shield starting a local Access Point
-- [WebServerLed](https://github.com/bportaluri/WiFiEsp/blob/master/examples/WebServerLed/WebServerLed.ino) - Turn on and off a led from a webpage
-- [UdpNTPClient](https://github.com/bportaluri/WiFiEsp/blob/master/examples/UdpNTPClient/UdpNTPClient.ino) - Query a Network Time Protocol (NTP) server using UDP
-
+- [ConnectWPA](https://github.com/WerkAG/WiFiEsp/blob/Development-Branch/examples/FirmwareVersion/ConnectWPA.ino) - Demonstrates how to connect to a network that is encrypted with WPA2 Personal
+- [WebClient](https://github.com/WerkAG/WiFiEsp/blob/Development-Branch/examples/FirmwareVersion/WebClient.ino) - Connect to a remote webserver 
+- [WebClientRepeating](https://github.com/WerkAG/WiFiEsp/blob/Development-Branch/examples/FirmwareVersion/WebClientRepeating.ino) - Make repeated HTTP calls to a webserver 
+- [WebServer](https://github.com/WerkAG/WiFiEsp/blob/Development-Branch/examples/FirmwareVersion/WebServer.ino) - Serve a webpage from the WiFi shield 
+- [WebServerAP](https://github.com/WerkAG/WiFiEsp/blob/Development-Branch/examples/FirmwareVersion/WebServerAP.ino) - Serve a webpage from the WiFi shield starting a local Access Point
+- [WebServerLed](https://github.com/WerkAG/WiFiEsp/blob/Development-Branch/examples/FirmwareVersion/WebServerLed.ino) - Turn on and off a led from a webpage
+- [UdpNTPClient](https://github.com/WerkAG/WiFiEsp/blob/Development-Branch/examples/FirmwareVersion/UdpNTPClient.ino) - Query a Network Time Protocol (NTP) server using UDP
+- [FirmwareVersion](https://github.com/WerkAG/WiFiEsp/blob/Development-Branch/examples/FirmwareVersion/FirmwareVersion.ino) - Check SDK and AT firmware version of the ESP8266 module
 
 ## Supported APIs
 
@@ -45,7 +45,8 @@ Most of the standard Arduino WiFi library methods are available. Refer to the [W
 - begin() - Not all authentication types
 - disconnect() - YES
 - config()
-- setDNS() - NO (no AT command available)
+- setDNS() - YES
+- hostByname() - YES
 - SSID() - YES
 - BSSID() - YES
 - RSSI() - YES

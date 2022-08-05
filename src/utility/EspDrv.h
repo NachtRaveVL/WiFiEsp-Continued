@@ -253,7 +253,17 @@ public:
      */
     static uint8_t getEncTypeNetowrks(uint8_t networkItem);
 
+    /*
+    * set DNS
+    */
+    static void setDNS(IPAddress dns_server1);
 
+    /*
+    * resolve Hostname
+    */
+    static bool resolve(const char* hostname, IPAddress& result);
+	
+	
     /*
      * Get the firmware version
      */
@@ -301,6 +311,9 @@ private:
 
 	// firmware version string
 	static char 	fwVersion[WL_FW_VER_LENGTH];
+	
+	// AT firmware version string
+	static char 	ATfwVersion[WL_FW_VER_LENGTH];	
 
 	// settings of requested network
 	static char 	_networkSsid[WL_NETWORKS_LIST_MAXNUM][WL_SSID_MAX_LENGTH];

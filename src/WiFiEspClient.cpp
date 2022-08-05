@@ -230,7 +230,8 @@ WiFiEspClient::operator bool()
 ////////////////////////////////////////////////////////////////////////////////
 // Additional WiFi standard methods
 ////////////////////////////////////////////////////////////////////////////////
-
+long _last_update_Millis = -99999;
+uint8_t _last_value = false;
 
 uint8_t WiFiEspClient::status()
 {
@@ -244,10 +245,18 @@ uint8_t WiFiEspClient::status()
 		return ESTABLISHED;
 	}
 
-	if (EspDrv::getClientState(_sock))
+	if ((millis() - _last_update_Millis < 50) and (_last_value == true))
 	{
 		return ESTABLISHED;
+	} else if (EspDrv::getClientState(_sock))
+	{
+		_last_value = true;
+		_last_update_Millis = millis();
+		// usleep(1000); // ADDING JUST THIS DELAY ALONE SEEMS TO HELP ALREADY
+		return ESTABLISHED;
 	}
+	_last_value = false;
+	_last_update_Millis = millis();
 
 	WiFiEspClass::releaseSocket(_sock);
 	_sock = 255;

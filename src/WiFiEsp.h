@@ -53,10 +53,16 @@ public:
 
 
 	/**
-	* Get firmware version
+	* Get SDK firmware version
 	*/
 	static char* firmwareVersion();
+	
 
+	/**
+	* Get AT firmware version
+	*/
+	static char* ATfirmwareVersion();
+	
 
 	// NOT IMPLEMENTED
 	//int begin(char* ssid);
@@ -93,8 +99,10 @@ public:
 	// NOT IMPLEMENTED
 	//void config(IPAddress local_ip, IPAddress dns_server, IPAddress gateway, IPAddress subnet);
 
-	// NOT IMPLEMENTED
-	//void setDNS(IPAddress dns_server1);
+	/*
+	* Set DNS server
+	*/
+	void setDNS(IPAddress dns_server1);
 
 	// NOT IMPLEMENTED
 	//void setDNS(IPAddress dns_server1, IPAddress dns_server2);
@@ -211,8 +219,15 @@ public:
     int32_t RSSI(uint8_t networkItem);
 
 
-	// NOT IMPLEMENTED
-	//int hostByName(const char* aHostname, IPAddress& aResult);
+    /*
+     * Return the IP address of a hostmane
+     *
+     * param hostname: hostname from which item want to get the IPaddress
+     * param aResult: a var of the type IPAddress, which will hold the result
+	 *
+     * return: IPAddress
+     */
+    int hostByName(const char* hostname, IPAddress& aResult);
 
 
 
