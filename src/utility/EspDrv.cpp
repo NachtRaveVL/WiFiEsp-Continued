@@ -204,6 +204,7 @@ bool EspDrv::wifiStartAP(const char* ssid, const char* pwd, uint8_t channel, uin
 
 	// set AP mode, use CUR mode to avoid automatic start at boot
     int ret = sendCmd(F("AT+CWMODE_CUR=%d"), 10000, espMode);
+
 	if (ret!=TAG_OK)
 	{
 		LOGWARN1(F("Failed to set AP mode"), ssid);
@@ -625,7 +626,12 @@ void EspDrv::setDNS(IPAddress dns_server1)
 
 	char buf[16];
 	sprintf_P(buf, PSTR("%d.%d.%d.%d"), dns_server1[0], dns_server1[1], dns_server1[2], dns_server1[3]);
-	int ret = sendCmd(F("AT+CIPDNS_CUR=1,\"%s\""), 2000, buf);
+
+	int ret;
+	if (_curMode)
+		ret = sendCmd(F("AT+CIPDNS_CUR=1,\"%s\""), 2000, buf);
+	else
+		ret = sendCmd(F("AT+CIPDNS=1,\"%s\""), 2000, buf);
 	delay(500);
 
 	if (ret==TAG_OK)

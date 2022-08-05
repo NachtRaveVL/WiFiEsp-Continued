@@ -1,4 +1,9 @@
-2.3.0 (2021-07-05)
+2.3.1 (2022-08-04) - by NachtRaveVL, furynick, & suryanshup
+  * Fixed compilation issues
+  * Switched cmd to String to support both F() and char*
+  * Added furynick's SecureClient
+
+2.3.0 (2021-07-05) - by WerkAG
   * Added WiFiEsp.setDNS(IPAddress dns_server1) method 
   * Added WiFiEsp.hostByName(const char* hostname, IPAddress& aResult) method 
 
