@@ -26,15 +26,10 @@ uint8_t WiFiEspClass::espMode = 0;
 WiFiEspClass::WiFiEspClass()
 { }
 
-void WiFiEspClass::init(Stream* espSerial, delay_cb delay_callback)
+void WiFiEspClass::init(Stream* espSerial, delay_cb delayCallback)
 {
     LOGINFO(F("Initializing ESP module"));
-	EspDrv::wifiDriverInit(espSerial, delay_callback);
-}
-
-void WiFiEspClass::registerDelayFunction(delay_cb delayCb)
-{
-	EspDrv::registerDelayFunction(delayCb);
+	EspDrv::wifiDriverInit(espSerial, delayCallback);
 }
 
 char* WiFiEspClass::firmwareVersion()

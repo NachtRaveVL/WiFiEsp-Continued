@@ -18,7 +18,7 @@ along with The Arduino WiFiEsp library.  If not, see
 
 #include <inttypes.h>
 
-#include "WiFiEsp.h"
+#include "WiFiEsp-Continued.h"
 #include "WiFiEspClient.h"
 #include "WiFiEspServer.h"
 

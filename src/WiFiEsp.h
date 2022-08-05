@@ -45,13 +45,9 @@ public:
 	* Initialize the ESP module.
 	*
 	* param espSerial: the serial interface (HW or SW) used to communicate with the ESP module
+	* param delayCallback: custom delay function
 	*/
-	static void init(Stream* espSerial, delay_cb delay_callback = NULL);
-
-	/**
-	* Registers delay callback function
-	*/
-	void registerDelayFunction(delay_cb delayCb);
+	static void init(Stream* espSerial, delay_cb delayCallback = NULL);
 
 	/**
 	* Get SDK firmware version

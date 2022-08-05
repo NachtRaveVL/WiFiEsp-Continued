@@ -4,7 +4,7 @@
  This sketch checks the SDK version of the ESP8266 module
 */
 
-#include "WiFiEsp.h"
+#include "WiFiEsp-Continued.h"
 
 void setup()
 {

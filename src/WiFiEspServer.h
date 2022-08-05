@@ -21,7 +21,7 @@ along with The Arduino WiFiEsp library.  If not, see
 
 #include <Server.h>
 
-#include "WiFiEsp.h"
+#include "WiFiEsp-Continued.h"
 
 
 class WiFiEspClient;

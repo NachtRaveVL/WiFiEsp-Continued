@@ -1,5 +1,5 @@
 2.3.1 (2022-08-04) - by NachtRaveVL, furynick, & suryanshup
-  * Fixed compilation issues
+  * Fixed compilation issues, lots of cleanup
   * Switched cmd to String to support both F() and char*
   * Added furynick's SecureClient
 

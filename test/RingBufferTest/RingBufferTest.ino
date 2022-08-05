@@ -4,7 +4,7 @@
  Test of the EspRingBuffer class.
 */
 
-#include "WiFiEsp.h"
+#include "WiFiEsp-Continued.h"
 
 EspRingBuffer buf(5);
 

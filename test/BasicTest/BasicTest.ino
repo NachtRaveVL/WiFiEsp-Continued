@@ -4,7 +4,7 @@
  Performs basic connectivity test and checks.
 */
 
-#include "WiFiEsp.h"
+#include "WiFiEsp-Continued.h"
 
 // Emulate Serial1 on pins 7/6 if not present
 #ifndef SERIAL_PORT_HARDWARE1

@@ -8,7 +8,7 @@
  For more details see: http://yaab-arduino.blogspot.com/p/wifiesp-example-connect.html
 */
 
-#include "WiFiEsp.h"
+#include "WiFiEsp-Continued.h"
 
 // Emulate Serial1 on pins 6/7 if not present
 #ifndef SERIAL_PORT_HARDWARE1

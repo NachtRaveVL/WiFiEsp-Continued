@@ -115,45 +115,52 @@ class EspDrv
 
 public:
     /*
-     * Initializes driver
-     * 
-     * param espSerial: Pointer to Serial instance.
-     * param delay_callback: Pointere to custom delay function, else NULL for default.
+     * Initialize the ESP module.
+     *
+     * param espSerial: the serial interface (HW or SW) used to communicate with the ESP module
+     * param delayCallback: custom delay function
      */
     static void wifiDriverInit(Stream *espSerial, delay_cb delay_callback);
 
     /*
-     * Start Wifi connection with passphrase
+     * Start Wifi connection with passphrase.
      *
      * param ssid: Pointer to the SSID string.
      * param passphrase: Passphrase. Valid characters in a passphrase must be between ASCII 32-126 (decimal).
      */
     static bool wifiConnect(const char* ssid, const char* passphrase);
 
-    /*
-	 * Start the Access Point
-	 */
+    /**
+     * Start the ESP access point.
+     *
+     * param ssid: Pointer to the SSID string.
+     * param channel: WiFi channel (1-14)
+     * param pwd: Passphrase. Valid characters in a passphrase
+     *		  must be between ASCII 32-126 (decimal).
+     * param enc: encryption type (enum wl_enc_type)
+     * param apOnly: Set to false if you want to run AP and Station modes simultaneously
+     */
 	static bool wifiStartAP(const char* ssid, const char* pwd, uint8_t channel, uint8_t enc, uint8_t espMode, bool ssidHidden = false, uint8_t maxConn = 4);
 
     /*
-	 * Set ip configuration disabling dhcp client
+	 * Set ip configuration disabling dhcp client.
 	 */
     static void config(IPAddress local_ip);
 
     /*
-	 * Set ip configuration disabling dhcp client
+	 * Set ip configuration disabling dhcp client.
 	 */
     static void configAP(IPAddress local_ip);
 
     /*
-     * Disconnect from the network
+     * Disconnect from the network.
      *
      * return: WL_SUCCESS or WL_FAILURE
      */
     static int8_t disconnect();
 
     /*
-     *
+     * Get connection status.
      *
      * return: one value of wl_status_t enum
      */
@@ -263,22 +270,22 @@ public:
     static uint8_t getEncTypeNetworks(uint8_t networkItem);
 
     /*
-    * set DNS
-    */
+     * set DNS
+     */
     static void setDNS(IPAddress dns_server1);
 
     /*
-    * Get client IPs
-    */
+     * Get client IPs
+     */
 	static IPAddress* getClientIPs(uint8_t& length);
 
     /*
-    * resolve Hostname
-    */
+     * resolve Hostname
+     */
     static bool resolve(const char* hostname, IPAddress& result);
 	
     /*
-     * Get the firmware version
+     * Get the firmware SDK version
      */
     static char* getFwVersion();
 
