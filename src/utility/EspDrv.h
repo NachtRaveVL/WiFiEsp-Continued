@@ -22,42 +22,37 @@ along with The Arduino WiFiEsp library.  If not, see
 #include "Stream.h"
 #include "IPAddress.h"
 
-
 #include "EspRingBuffer.h"
 
-
-
 // Maximum size of a SSID
-#define WL_SSID_MAX_LENGTH 32
+#define WL_SSID_MAX_LENGTH          32
 
 // Size of a MAC-address or BSSID
-#define WL_MAC_ADDR_LENGTH 6
+#define WL_MAC_ADDR_LENGTH          6
 
 // Size of a MAC-address or BSSID
-#define WL_IPV4_LENGTH 4
+#define WL_IPV4_LENGTH              4
 
-#define WL_IPV4_STRING_MAX_LENGTH 15
+#define WL_IPV4_STRING_MAX_LENGTH   15
 
 // Maximum size of a SSID list
-#define WL_NETWORKS_LIST_MAXNUM	20
+#define WL_NETWORKS_LIST_MAXNUM	    20
 
 // Maxmium number of socket
-#define	MAX_SOCK_NUM		4
+#define	MAX_SOCK_NUM		        4
 
 // Socket not available constant
-#define SOCK_NOT_AVAIL  255
+#define SOCK_NOT_AVAIL              255
 
 // Default state value for Wifi state field
-#define NA_STATE -1
+#define NA_STATE                    -1
 
-#define WL_FW_VER_LENGTH 6
+#define WL_FW_VER_LENGTH            6
 
-#define NO_SOCKET_AVAIL 255
-
+#define NO_SOCKET_AVAIL             255
 
 // maximum size of AT command
-#define CMD_BUFFER_SIZE 200
-
+#define CMD_BUFFER_SIZE             200
 
 typedef enum eProtMode {TCP_MODE, UDP_MODE, SSL_MODE} tProtMode;
 
@@ -80,7 +75,6 @@ enum wl_auth_mode {
         AUTH_MODE_WPA2_PSK
 };
 
-
 typedef enum {
 	WL_NO_SHIELD = 255,
 	WL_IDLE_STATUS = 0,
@@ -101,7 +95,6 @@ enum wl_enc_type {
 	ENC_TYPE_WPA_WPA2_PSK = 4
 };
 
-
 enum wl_tcp_state {
 	CLOSED      = 0,
 	LISTEN      = 1,
@@ -117,29 +110,30 @@ enum wl_tcp_state {
 };
 
 
-
 class EspDrv
 {
 
 public:
-
+    /*
+     * Initializes driver
+     * 
+     * param espSerial: Pointer to Serial instance.
+     * param delay_callback: Pointere to custom delay function, else NULL for default.
+     */
     static void wifiDriverInit(Stream *espSerial, delay_cb delay_callback);
 
-    static void registerDelayFunction(delay_cb delayCb);
-
-    /* Start Wifi connection with passphrase
+    /*
+     * Start Wifi connection with passphrase
      *
      * param ssid: Pointer to the SSID string.
      * param passphrase: Passphrase. Valid characters in a passphrase must be between ASCII 32-126 (decimal).
      */
     static bool wifiConnect(const char* ssid, const char* passphrase);
 
-
     /*
-	* Start the Access Point
-	*/
+	 * Start the Access Point
+	 */
 	static bool wifiStartAP(const char* ssid, const char* pwd, uint8_t channel, uint8_t enc, uint8_t espMode, bool ssidHidden = false, uint8_t maxConn = 4);
-
 
     /*
 	 * Set ip configuration disabling dhcp client
@@ -150,7 +144,6 @@ public:
 	 * Set ip configuration disabling dhcp client
 	 */
     static void configAP(IPAddress local_ip);
-
 
     /*
      * Disconnect from the network
@@ -180,6 +173,11 @@ public:
      */
     static void getIpAddress(IPAddress& ip);
 
+    /*
+     * Get the access point IP address.
+     *
+     * return: copy the ip address value in IPAddress object
+     */
 	static void getIpAddressAP(IPAddress& ip);
 
     /*
@@ -274,12 +272,10 @@ public:
     */
 	static IPAddress* getClientIPs(uint8_t& length);
 
-
     /*
     * resolve Hostname
     */
     static bool resolve(const char* hostname, IPAddress& result);
-	
 	
     /*
      * Get the firmware version
@@ -290,7 +286,6 @@ public:
 	////////////////////////////////////////////////////////////////////////////
 	// Client/Server methods
 	////////////////////////////////////////////////////////////////////////////
-
 
     static bool startServer(uint16_t port, uint8_t sock);
     static bool startClient(const char* host, uint16_t port, uint8_t sock, uint8_t protMode);
@@ -304,7 +299,6 @@ public:
 	static bool sendDataUdp(uint8_t sock, const char* host, uint16_t port, const uint8_t *data, uint16_t len);
     static uint16_t availData(uint8_t connId);
 
-
 	static bool ping(const char *host);
     static void reset();
 
@@ -315,8 +309,8 @@ public:
 ////////////////////////////////////////////////////////////////////////////////
 
 private:
-	static Stream *espSerial;
-    static delay_cb delayCallback;
+	static Stream *_espSerial;
+    static delay_cb _delayCallback;
 
     static bool _curMode;
 	static long _bufPos;
@@ -325,19 +319,14 @@ private:
 	static uint16_t _remotePort;
 	static uint8_t  _remoteIp[WL_IPV4_LENGTH];
 
-
 	// firmware version string
-	static char 	fwVersion[WL_FW_VER_LENGTH];
-	
-	// AT firmware version string
-	static char 	ATfwVersion[WL_FW_VER_LENGTH];	
+	static char 	_fwVersion[WL_FW_VER_LENGTH];
 
 	// settings of requested network
 	static char 	_networkSsid[WL_NETWORKS_LIST_MAXNUM][WL_SSID_MAX_LENGTH];
 	static int32_t 	_networkRssi[WL_NETWORKS_LIST_MAXNUM];
 	static int32_t 	_networkChannel[WL_NETWORKS_LIST_MAXNUM];
 	static uint8_t 	_networkEncr[WL_NETWORKS_LIST_MAXNUM];
-
 
 	// settings of current selected network
 	static char 	_ssid[WL_SSID_MAX_LENGTH];
