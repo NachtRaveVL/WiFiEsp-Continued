@@ -1,11 +1,10 @@
 /*
- WiFiEsp example: SDK and AT version
+ WiFiEsp example: SDK version
 
- This sketch checks the SDK and AT version of the ESP8266 module
+ This sketch checks the SDK version of the ESP8266 module
 */
 
 #include "WiFiEsp.h"
-
 
 void setup()
 {
@@ -23,10 +22,8 @@ void setup()
     while (true);
   }
   else {
-    Serial.print(F("WiFi SDK: v")); Serial.println (WiFi.firmwareVersion() );      
-    Serial.print(F("WiFi AT: v")); Serial.println (WiFi.ATfirmwareVersion() );              
+    Serial.print(F("WiFi SDK: v")); Serial.println (WiFi.firmwareVersion() );          
   }
-
 }
 
 void loop()
