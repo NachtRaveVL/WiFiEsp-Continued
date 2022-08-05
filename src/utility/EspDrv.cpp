@@ -137,10 +137,8 @@ void EspDrv::registerDelayFunction(delay_cb delayCb)
 	}
 }
 
-void EspDrv::reset()
-{
-	LOGDEBUG(F("> reset"));
-
+void EspDrv::reset() {
+	LOGDEBUG(F("> soft reset"));
 	sendCmd(F("AT+RST"));
 	delayCallback(3000);
 	espEmptyBuf(false);  // empty dirty characters from the buffer
@@ -166,8 +164,6 @@ void EspDrv::reset()
 	sendCmd(F("AT+CWDHCP=1,1"));
 	delayCallback(200);
 }
-
-
 
 bool EspDrv::wifiConnect(const char* ssid, const char* passphrase)
 {
@@ -202,7 +198,7 @@ bool EspDrv::wifiConnect(const char* ssid, const char* passphrase)
 }
 
 
-bool EspDrv::wifiStartAP(const char* ssid, const char* pwd, uint8_t channel, uint8_t enc, uint8_t espMode)
+bool EspDrv::wifiStartAP(const char* ssid, const char* pwd, uint8_t channel, uint8_t enc, uint8_t espMode, bool ssidHidden, uint8_t maxConn)
 {
 	LOGDEBUG(F("> wifiStartAP"));
 
@@ -599,7 +595,7 @@ bool EspDrv::getGateway(IPAddress& gw)
 	return false;
 }
 
-char* EspDrv::getSSIDNetoworks(uint8_t networkItem)
+char* EspDrv::getSSIDNetworks(uint8_t networkItem)
 {
 	if (networkItem >= WL_NETWORKS_LIST_MAXNUM)
 		return NULL;
@@ -607,7 +603,7 @@ char* EspDrv::getSSIDNetoworks(uint8_t networkItem)
 	return _networkSsid[networkItem];
 }
 
-uint8_t EspDrv::getEncTypeNetowrks(uint8_t networkItem)
+uint8_t EspDrv::getEncTypeNetworks(uint8_t networkItem)
 {
 	if (networkItem >= WL_NETWORKS_LIST_MAXNUM)
 		return 0;
@@ -615,7 +611,7 @@ uint8_t EspDrv::getEncTypeNetowrks(uint8_t networkItem)
     return _networkEncr[networkItem];
 }
 
-int32_t EspDrv::getRSSINetoworks(uint8_t networkItem)
+int32_t EspDrv::getRSSINetworks(uint8_t networkItem)
 {
 	if (networkItem >= WL_NETWORKS_LIST_MAXNUM)
 		return 0;
@@ -668,17 +664,6 @@ char* EspDrv::getFwVersion()
     return fwVersion;
 }
 
-char* EspDrv::getATFwVersion()
-{
-	LOGDEBUG(F("> getATFwVersion"));
-
-	ATfwVersion[0] = 0;
-
-	sendCmdGet(F("AT+GMR"), F("AT version:"), F("\r\n"), ATfwVersion, sizeof(ATfwVersion));
-
-    return ATfwVersion;
-}
-
 bool EspDrv::ping(const char *host)
 {
 	LOGDEBUG(F("> ping"));
@@ -690,8 +675,6 @@ bool EspDrv::ping(const char *host)
 
 	return false;
 }
-
-
 
 // Start server TCP on port specified
 bool EspDrv::startServer(uint16_t port, uint8_t sock)
@@ -830,7 +813,6 @@ bool EspDrv::getData(uint8_t connId, uint8_t *data, bool peek, bool* connClose)
 				*data = (char)espSerial->read();
 				_bufPos--;
 			}
-			//Serial.print((char)*data);
 
 			if (_bufPos == 0)
 			{

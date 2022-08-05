@@ -64,14 +64,14 @@ int WiFiEspClass::begin(const char* ssid, const char* passphrase)
 }
 
 
-int WiFiEspClass::beginAP(const char* ssid, uint8_t channel, const char* pwd, uint8_t enc, bool apOnly)
+int WiFiEspClass::beginAP(const char* ssid, uint8_t channel, const char* pwd, uint8_t enc, bool apOnly, bool ssidHidden)
 {
 	if(apOnly)
         espMode = 2;
     else
         espMode = 3;
 
-    if (EspDrv::wifiStartAP(ssid, pwd, channel, enc, espMode))
+    if (EspDrv::wifiStartAP(ssid, pwd, channel, enc, espMode, ssidHidden))
 		return WL_CONNECTED;
 
 	return WL_CONNECT_FAILED;
@@ -82,9 +82,9 @@ int WiFiEspClass::beginAP(const char* ssid)
 	return beginAP(ssid, 10, "", 0);
 }
 
-int WiFiEspClass::beginAP(const char* ssid, uint8_t channel)
+int WiFiEspClass::beginAP(const char* ssid, uint8_t channel, bool ssidHidden)
 {
-	return beginAP(ssid, channel, "", 0);
+	return beginAP(ssid, channel, "", 0, true, ssidHidden);
 }
 
 
@@ -176,17 +176,22 @@ int8_t WiFiEspClass::scanNetworks()
 
 char* WiFiEspClass::SSID(uint8_t networkItem)
 {
-	return EspDrv::getSSIDNetoworks(networkItem);
+	return EspDrv::getSSIDNetworks(networkItem);
 }
 
 int32_t WiFiEspClass::RSSI(uint8_t networkItem)
 {
-	return EspDrv::getRSSINetoworks(networkItem);
+	return EspDrv::getRSSINetworks(networkItem);
+}
+
+int32_t WiFiEspClass::Channel(uint8_t networkItem)
+{
+	return EspDrv::getChannelNetworks(networkItem);
 }
 
 uint8_t WiFiEspClass::encryptionType(uint8_t networkItem)
 {
-    return EspDrv::getEncTypeNetowrks(networkItem);
+    return EspDrv::getEncTypeNetworks(networkItem);
 }
 
 
@@ -195,30 +200,21 @@ uint8_t WiFiEspClass::status()
 	return EspDrv::getConnectionStatus();
 }
 
+IPAddress* WiFiEspClass::getClientIPs(uint8_t& length)
+{
+	return EspDrv::getClientIPs(length);
+}
+
 
 
 ////////////////////////////////////////////////////////////////////////////
 // Non standard methods
 ////////////////////////////////////////////////////////////////////////////
 
-void WiFiEspClass::reset(void)
+void WiFiEspClass::reset()
 {
 	EspDrv::reset();
 }
-
-
-/*
-void ESP8266::hardReset(void)
-{
-connected = false;
-strcpy(ip, "");
-digitalWrite(ESP8266_RST, LOW);
-delay(ESP8266_HARD_RESET_DURATION);
-digitalWrite(ESP8266_RST, HIGH);
-delay(ESP8266_HARD_RESET_DURATION);
-}
-*/
-
 
 bool WiFiEspClass::ping(const char *host)
 {
