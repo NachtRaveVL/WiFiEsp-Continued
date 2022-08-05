@@ -50,7 +50,10 @@ void EspRingBuffer::push(char c)
 		ringBufP = ringBuf;
 }
 
-
+int EspRingBuffer::getPos()
+{
+	return ringBufP - ringBuf;
+}
 
 bool EspRingBuffer::endsWith(const char* str)
 {
