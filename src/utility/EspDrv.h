@@ -345,17 +345,14 @@ private:
 	static uint8_t 	_mac[WL_MAC_ADDR_LENGTH];
 	static uint8_t  _localIp[WL_IPV4_LENGTH];
 
-
 	// the ring buffer is used to search the tags in the stream
 	static EspRingBuffer ringBuf;
 
+	static int sendCmd(String cmd, int timeout=1000);
+	static int sendCmd(String cmd, int timeout, ...);
 
-	//static int sendCmd(const char* cmd, int timeout=1000);
-	static int sendCmd(const __FlashStringHelper* cmd, int timeout=1000);
-	static int sendCmd(const __FlashStringHelper* cmd, int timeout, ...);
-
-	static bool sendCmdGet(const __FlashStringHelper* cmd, const char* startTag, const char* endTag, char* outStr, int outStrLen);
-	static bool sendCmdGet(const __FlashStringHelper* cmd, const __FlashStringHelper* startTag, const __FlashStringHelper* endTag, char* outStr, int outStrLen);
+	static bool sendCmdGet(String cmd, const char* startTag, const char* endTag, char* outStr, int outStrLen);
+	static bool sendCmdGet(String cmd, const __FlashStringHelper* startTag, const __FlashStringHelper* endTag, char* outStr, int outStrLen);
 
 	static int readUntil(unsigned int timeout, const char* tag=NULL, bool findTags=true);
 

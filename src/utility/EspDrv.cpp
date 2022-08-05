@@ -226,7 +226,7 @@ bool EspDrv::wifiStartAP(const char* ssid, const char* pwd, uint8_t channel, uin
 		return false;
 	}
 
-	if (_curMode)
+	if (_curMode) {
 		if (espMode == 2)
 			sendCmd(F("AT+CWDHCP_CUR=0,1"));    // enable DHCP for AP mode
 		if (espMode == 3)
@@ -644,7 +644,7 @@ bool EspDrv::resolve(const char* hostname, IPAddress& result) {
   sprintf_P(cmdBuf, PSTR("AT+CIPDOMAIN=\"%s\""), hostname);
   LOGINFO1(F("cmdBuf: "), cmdBuf);
   
-  if (sendCmdGet(F(cmdBuf), F("+CIPDOMAIN:"), F("\r\n"), buf, sizeof(buf)))  
+  if (sendCmdGet(cmdBuf, F("+CIPDOMAIN:"), F("\r\n"), buf, sizeof(buf)))  
    {
 	  result.fromString(buf);
 	  LOGINFO1(F("Resolved hostname IP:"), result);
@@ -1005,7 +1005,7 @@ uint16_t EspDrv::getRemotePort()
 * Extract the string enclosed in the passed tags and returns it in the outStr buffer.
 * Returns true if the string is extracted, false if tags are not found of timed out.
 */
-bool EspDrv::sendCmdGet(const __FlashStringHelper* cmd, const char* startTag, const char* endTag, char* outStr, int outStrLen)
+bool EspDrv::sendCmdGet(String cmd, const char* startTag, const char* endTag, char* outStr, int outStrLen)
 {
     int idx;
 	bool ret = false;
@@ -1064,7 +1064,7 @@ bool EspDrv::sendCmdGet(const __FlashStringHelper* cmd, const char* startTag, co
 	return ret;
 }
 
-bool EspDrv::sendCmdGet(const __FlashStringHelper* cmd, const __FlashStringHelper* startTag, const __FlashStringHelper* endTag, char* outStr, int outStrLen)
+bool EspDrv::sendCmdGet(String cmd, const __FlashStringHelper* startTag, const __FlashStringHelper* endTag, char* outStr, int outStrLen)
 {
 	char _startTag[strlen_P((char*)startTag)+1];
 	strcpy_P(_startTag,  (char*)startTag);
@@ -1080,7 +1080,7 @@ bool EspDrv::sendCmdGet(const __FlashStringHelper* cmd, const __FlashStringHelpe
 * Sends the AT command and returns the id of the TAG.
 * Return -1 if no tag is found.
 */
-int EspDrv::sendCmd(const __FlashStringHelper* cmd, int timeout)
+int EspDrv::sendCmd(String cmd, int timeout)
 {
     espEmptyBuf();
 
@@ -1103,13 +1103,13 @@ int EspDrv::sendCmd(const __FlashStringHelper* cmd, int timeout)
 * The additional arguments are formatted into the command using sprintf.
 * Return -1 if no tag is found.
 */
-int EspDrv::sendCmd(const __FlashStringHelper* cmd, int timeout, ...)
+int EspDrv::sendCmd(String cmd, int timeout, ...)
 {
 	char cmdBuf[CMD_BUFFER_SIZE];
 
 	va_list args;
 	va_start (args, timeout);
-	vsnprintf_P (cmdBuf, CMD_BUFFER_SIZE, (char*)cmd, args);
+	vsnprintf_P (cmdBuf, CMD_BUFFER_SIZE, cmd.c_str(), args);
 	va_end (args);
 
 	espEmptyBuf();

@@ -36,12 +36,10 @@ class WiFiEspClass
 {
 
 public:
-
 	static int16_t _state[MAX_SOCK_NUM];
 	static uint16_t _server_port[MAX_SOCK_NUM];
 
 	WiFiEspClass();
-
 
 	/**
 	* Initialize the ESP module.
@@ -50,26 +48,21 @@ public:
 	*/
 	static void init(Stream* espSerial, delay_cb delay_callback = NULL);
 
+	/**
+	* Registers delay callback function
+	*/
 	void registerDelayFunction(delay_cb delayCb);
 
 	/**
 	* Get SDK firmware version
 	*/
 	static char* firmwareVersion();
-	
-
-	/**
-	* Get AT firmware version
-	*/
-	static char* ATfirmwareVersion();
-	
 
 	// NOT IMPLEMENTED
 	//int begin(char* ssid);
 
 	// NOT IMPLEMENTED
 	//int begin(char* ssid, uint8_t key_idx, const char* key);
-
 
 	/**
 	* Start Wifi connection with passphrase
@@ -81,14 +74,12 @@ public:
 	*/
 	int begin(const char* ssid, const char* passphrase);
 
-
 	/**
 	* Change Ip configuration settings disabling the DHCP client
 	*
 	* param local_ip:	Static ip configuration
 	*/
 	void config(IPAddress local_ip);
-
 
 	// NOT IMPLEMENTED
 	//void config(IPAddress local_ip, IPAddress dns_server);
@@ -128,7 +119,6 @@ public:
 	*/
 	IPAddress localIP();
 
-
 	/**
 	* Get the interface subnet mask address.
 	*
@@ -141,7 +131,7 @@ public:
 	*
 	* return: gateway ip address value
 	*/
-   IPAddress gatewayIP();
+	IPAddress gatewayIP();
 
 	/**
 	* Return the current SSID associated with the network
@@ -167,7 +157,6 @@ public:
 	*/
 	int32_t RSSI();
 
-
 	/**
 	* Return Connection status.
 	*
@@ -175,7 +164,6 @@ public:
 	*         see https://www.arduino.cc/en/Reference/WiFiStatus
 	*/
 	uint8_t status();
-
 
     /*
       * Return the Encryption Type associated with the network
@@ -240,7 +228,6 @@ public:
     int hostByName(const char* hostname, IPAddress& aResult);
 
 
-
 	////////////////////////////////////////////////////////////////////////////
 	// Non standard methods
 	////////////////////////////////////////////////////////////////////////////
@@ -269,8 +256,6 @@ public:
 	* param ip:	Static ip configuration
 	*/
 	void configAP(IPAddress ip);
-
-
 
 	/**
 	* Restart the ESP module.

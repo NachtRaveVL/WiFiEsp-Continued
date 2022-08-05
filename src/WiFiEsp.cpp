@@ -18,18 +18,13 @@ along with The Arduino WiFiEsp library.  If not, see
 
 #include "WiFiEsp.h"
 
-
 int16_t 	WiFiEspClass::_state[MAX_SOCK_NUM] = { NA_STATE, NA_STATE, NA_STATE, NA_STATE };
 uint16_t 	WiFiEspClass::_server_port[MAX_SOCK_NUM] = { 0, 0, 0, 0 };
 
-
 uint8_t WiFiEspClass::espMode = 0;
 
-
 WiFiEspClass::WiFiEspClass()
-{
-
-}
+{ }
 
 void WiFiEspClass::init(Stream* espSerial, delay_cb delay_callback)
 {
@@ -47,13 +42,6 @@ char* WiFiEspClass::firmwareVersion()
 	return EspDrv::getFwVersion();
 }
 
-
-char* WiFiEspClass::ATfirmwareVersion()
-{
-	return EspDrv::getATFwVersion();
-}
-
-
 int WiFiEspClass::begin(const char* ssid, const char* passphrase)
 {
     espMode = 1;
@@ -62,7 +50,6 @@ int WiFiEspClass::begin(const char* ssid, const char* passphrase)
 
 	return WL_CONNECT_FAILED;
 }
-
 
 int WiFiEspClass::beginAP(const char* ssid, uint8_t channel, const char* pwd, uint8_t enc, bool apOnly, bool ssidHidden)
 {
@@ -87,7 +74,6 @@ int WiFiEspClass::beginAP(const char* ssid, uint8_t channel, bool ssidHidden)
 	return beginAP(ssid, channel, "", 0, true, ssidHidden);
 }
 
-
 void WiFiEspClass::config(IPAddress ip)
 {
 	EspDrv::config(ip);
@@ -107,8 +93,6 @@ void WiFiEspClass::configAP(IPAddress ip)
 {
 	EspDrv::configAP(ip);
 }
-
-
 
 int WiFiEspClass::disconnect()
 {
@@ -149,7 +133,6 @@ IPAddress WiFiEspClass::gatewayIP()
 	return gw;
 }
 
-
 char* WiFiEspClass::SSID()
 {
     return EspDrv::getCurrentSSID();
@@ -167,7 +150,6 @@ int32_t WiFiEspClass::RSSI()
 {
     return EspDrv::getCurrentRSSI();
 }
-
 
 int8_t WiFiEspClass::scanNetworks()
 {
@@ -194,7 +176,6 @@ uint8_t WiFiEspClass::encryptionType(uint8_t networkItem)
     return EspDrv::getEncTypeNetworks(networkItem);
 }
 
-
 uint8_t WiFiEspClass::status()
 {
 	return EspDrv::getConnectionStatus();
@@ -204,7 +185,6 @@ IPAddress* WiFiEspClass::getClientIPs(uint8_t& length)
 {
 	return EspDrv::getClientIPs(length);
 }
-
 
 
 ////////////////////////////////////////////////////////////////////////////

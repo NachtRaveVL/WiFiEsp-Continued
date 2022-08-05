@@ -105,4 +105,4 @@ The UDP class enables UDP message to be sent and received.
 
 ## Contributing
 
-If you discover a bug or would like to propose a new feature, please open a new [issue](https://github.com/bportaluri/WiFiEsp/issues).
+Only pull requests will be accepted.
