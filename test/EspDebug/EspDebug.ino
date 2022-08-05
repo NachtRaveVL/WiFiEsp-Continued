@@ -3,7 +3,7 @@
 #include "Arduino.h"
 
 // Emulate Serial1 on pins 7/6 if not present
-#ifndef HAVE_HWSERIAL1
+#ifndef SERIAL_PORT_HARDWARE1
 #include "SoftwareSerial.h"
 SoftwareSerial Serial1(6, 7); // RX, TX
 #endif
@@ -11,7 +11,7 @@ SoftwareSerial Serial1(6, 7); // RX, TX
 void setup()
 {
   Serial.begin(115200); // serial port used for debugging
-  Serial1.begin(9600);  // your ESP's baud rate might be different
+  Serial1.begin(115200);  // your ESP's baud rate might be different
 }
  
 void loop()
