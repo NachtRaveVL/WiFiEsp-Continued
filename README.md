@@ -2,10 +2,11 @@
 
 Original library: https://github.com/bportaluri/WiFiEsp
 
-This version of the library is in pull-request only mode. I will not be taking bug reports.  
+This version of the library is in maintenance-only mode. The intention is to continue the legacy of the original library, but made to work for modern compilation systems. No new features outside of that which the community or the original author provide are scheduled.
 
+# Introduction
 
-With an ESP8266 board, WiFiEsp Continued library allows an Arduino board to connect to the internet.
+With an ESP8266 board, WiFiEsp library allows an Arduino board to connect to the internet.
 It can serve as either a server accepting incoming connections or a client making outgoing ones.
 The WiFiEsp library is very similar to the Arduino [WiFi](http://www.arduino.cc/en/Reference/WiFi) and [Ethernet](http://www.arduino.cc/en/Reference/Ethernet) libraries, and many of the function calls are the same. 
 
