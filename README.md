@@ -10,18 +10,18 @@ WiFiEsp-Continued library allows an Arduino board with an ESP8266 serial WiFi sh
 It can serve as either a server accepting incoming connections or a client making outgoing ones.
 The WiFiEsp-Continued library is very similar to the Arduino [WiFi](http://www.arduino.cc/en/Reference/WiFi) and [Ethernet](http://www.arduino.cc/en/Reference/Ethernet) libraries, and many of the function calls are the same. 
 
-Supports ESP SDK version 1.1.1 and above (AT version 0.25 and above).
+Supports up to ESP Firmware SDK version v1.7.x (AT command version 0.25 and above). v2+ SDK support may be shaky (under development).
 
 ## Features
 
 - APIs compatible with standard Arduino WiFi library.
-- Use AT commands of standard ESP firmware (no need to flash a custom firmware).
+- Use AT commands of standard ESP firmware.
 - Support hardware and software serial ports.
 - Configurable tracing level.
 
 ## Wiring
 
-The WiFiEsp-Continued library has been designed to work with the [ESP8266 WiFi module](https://www.allaboutcircuits.com/projects/breadboard-and-program-an-esp-01-circuit-with-the-arduino-ide/) (aka ESP-01). It is a cheap version of the Arduino WiFi shield that uses a ESP8266EX module to provide networking capabilities to Arduino boards. It comes in several versions, with the biggest differences being the amount of programmable memory and max data speed supported, with older (blue board, 512KB/4Mbit) versions supporting only 9600 baud while newer (black board, 1MB+/8Mbit+) versions supporting 115200+ baud (recommend to not exceed 115200). Later boards have room to support extra features, including OTA firmware updates that do not require a programmer.
+The WiFiEsp-Continued library has been designed to work with the [ESP8266 WiFi module](https://www.allaboutcircuits.com/projects/breadboard-and-program-an-esp-01-circuit-with-the-arduino-ide/) (aka ESP-01). It is a cheap version of the Arduino WiFi shield that uses a ESP8266EX module to provide networking capabilities to Arduino boards. It comes in several versions, with the biggest differences being the amount of programmable memory and max data speed supported, with older (blue board, 512KB/4Mbit) versions supporting only 9600 baud while newer (black board, 1MB+/8Mbit+) versions supporting 115200+ baud (recommend to not exceed 115200). Later boards have even more room to support extra features, including OTA firmware updates that do not require a programmer.
 
 ## Flashing
 
