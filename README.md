@@ -12,8 +12,6 @@ The WiFiEsp-Continued library is very similar to the Arduino [WiFi](http://www.a
 
 Supports ESP SDK version 1.1.1 and above (AT version 0.25 and above).
 
-Easily flash your WiFi module with [ESPEasy](https://github.com/letscontrolit/ESPEasy).
-
 ## Features
 
 - APIs compatible with standard Arduino WiFi library.
@@ -23,10 +21,23 @@ Easily flash your WiFi module with [ESPEasy](https://github.com/letscontrolit/ES
 
 ## Wiring
 
-The WiFiEsp-Continued library has been designed to work with the [ESP WiFi shield](http://www.instructables.com/id/Cheap-Arduino-WiFi-Shield-With-ESP8266/).
+The WiFiEsp-Continued library has been designed to work with the [ESP8266 WiFi module](https://www.allaboutcircuits.com/projects/breadboard-and-program-an-esp-01-circuit-with-the-arduino-ide/) (aka ESP-01). It is a cheap version of the Arduino WiFi shield that uses a ESP8266EX module to provide networking capabilities to Arduino boards. It comes in several versions, with the biggest differences being the amount of programmable memory and max data speed supported, with older (blue board, 512KB/4Mbit) versions supporting only 9600 baud while newer (black board, 1MB+/8Mbit+) versions supporting 115200+ baud (recommend to not exceed 115200). Later boards have room to support extra features, including OTA firmware updates that do not require a programmer.
 
-It is a cheap version of the Arduino WiFi shield that uses an ESP8266 module to provide networking capabilities to Arduino boards.
+## Flashing
 
+Be advised that all newer ESP8266 WiFi modules on market come with firmware that can take advantage of OTA updates. Custom flashing may likely not be needed depending on your device features (read as: flashing the firmware may require some amount of time investment to understand and may leave your module not working properly - so be sure to *read the manual*).
+
+Relevant links:
+* [ESP flashing tools](https://www.espressif.com/en/products/socs/esp8266ex/resources) (under Tools section)
+* [ESP AT firmware](https://www.espressif.com/en/products/socs/esp8266ex/resources) (under AT section)
+* [ESP AT firmware source](https://github.com/espressif/esp-at)
+* [ESP AT firmware docs](https://docs.espressif.com/projects/esp-at/en/release-v2.2.0.0_esp8266/index.html)
+* [NodeMCU flasher](https://github.com/nodemcu/nodemcu-flasher)
+* [ESPEasy](https://github.com/letscontrolit/ESPEasy)
+* [flashing guide](https://www.allaboutcircuits.com/projects/flashing-the-ESP-01-firmware-to-SDK-v2.0.0-is-easier-now)
+* [another flashing guide](https://www.electronicshub.org/update-flash-esp8266-firmware/)
+* [alternate pre-compiled AT binaries](https://github.com/CytronTechnologies/esp-at-binaries)
+* [more alternate pre-compiled AT binaries](https://github.com/loboris/ESP8266_AT_LoBo)
 
 ## Examples
 
