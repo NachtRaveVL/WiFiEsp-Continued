@@ -2,7 +2,9 @@
 
 Original library: https://github.com/bportaluri/WiFiEsp
 
-This version of the library is in maintenance-only mode. The intention is to continue the legacy of the original library, but made to work for modern compilation systems. No new features outside of that which the community or the original author provide are scheduled. Fixes through community pull requests are most appreciated. Please report bugs to issue tracker. Please no feature requests outside of pull requests.
+This version of the library is in maintenance-only mode. The intention is to continue the legacy of the original library, but made to work for modern compilation systems. No new features outside of that which the community or the original author provide are scheduled. Fixes through community pull requests are most appreciated. Please report bugs to issue tracker. Please no feature requests outside of pull requests that do not change any existing interfaces.
+
+For new projects it is recommended to instead use: https://github.com/jandrassy/WiFiEspAT
 
 ## Introduction
 
@@ -10,12 +12,13 @@ WiFiEsp-Continued library allows an Arduino board with an ESP8266 serial WiFi sh
 It can serve as either a server accepting incoming connections or a client making outgoing ones.
 The WiFiEsp-Continued library is very similar to the Arduino [WiFi](http://www.arduino.cc/en/Reference/WiFi) and [Ethernet](http://www.arduino.cc/en/Reference/Ethernet) libraries, and many of the function calls are the same. 
 
-Supports up to ESP Firmware SDK version v1.7.x (AT command version 0.25 and above). v2+ SDK support may be shaky (under development).
+Supports *up to* ESP Firmware SDK v1.7.x (AT command version 0.25 and above). SDK v2+ has not been tested and not due to be supported.
 
 ## Features
 
 - APIs compatible with standard Arduino WiFi library.
 - Use AT commands of standard ESP firmware.
+- Support _CUR mode commands.
 - Support hardware and software serial ports.
 - Configurable tracing level.
 
