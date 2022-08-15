@@ -12,29 +12,30 @@ WiFiEsp-Continued library allows an Arduino board with an ESP8266 serial WiFi sh
 It can serve as either a server accepting incoming connections or a client making outgoing ones.
 The WiFiEsp-Continued library is very similar to the Arduino [WiFi](http://www.arduino.cc/en/Reference/WiFi) and [Ethernet](http://www.arduino.cc/en/Reference/Ethernet) libraries, and many of the function calls are the same. 
 
-Supports *up to* ESP Firmware SDK v1.5.4, but *should* work with AT command library v0.25 and above. SDK v2+ has not been tested.
+Supports *up to* ESP Firmware SDK v1.5.4 (AT command version v1.1.1.0). SDK v2+ and later revisions have not been tested.
 
 ## Features
 
 - APIs compatible with standard Arduino WiFi library.
 - Use AT commands of standard ESP firmware.
-- Support _CUR mode commands.
+- Support CUR mode commands.
 - Support hardware and software serial ports.
 - Configurable tracing level.
+- Added community fixes.
 
 ## Wiring
 
-The WiFiEsp-Continued library has been designed to work with the [ESP8266 WiFi module](https://www.allaboutcircuits.com/projects/breadboard-and-program-an-esp-01-circuit-with-the-arduino-ide/) (aka ESP-01). It is a cheap version of the Arduino WiFi shield that uses a ESP8266EX module to provide networking capabilities to Arduino boards. It comes in several versions, with the biggest differences being the amount of programmable memory, with older (blue board, 512KB/4Mbit) versions supporting up to SDK v1.4 without OTA functionality and newer (black board, 1MB+/8Mbit+) versions supporting SDK v2+ with OTA functionality.
+The WiFiEsp-Continued library has been designed to work with the [ESP8266 WiFi module](https://www.allaboutcircuits.com/projects/breadboard-and-program-an-esp-01-circuit-with-the-arduino-ide/) (aka ESP-01). It is a cheap version of the Arduino WiFi shield that uses a ESP8266EX module to provide networking capabilities to Arduino boards. It comes in several versions, with the biggest differences being the amount of programmable memory, with older (blue board, 512KB/4Mbit) versions supporting up to SDK v1.4 and newer (black board, 1MB+/8Mbit+) versions supporting beyond SDK v2+.
 
 ## Flashing
 
-Be advised that all newer ESP8266 WiFi modules on market come with firmware that can take advantage of OTA updates. Custom flashing may not be needed depending on your device features. In order to flash, you will need to know the Flash ROM size of your module (i.e. 4Mbit, 8Mbit, 16Mbit, etc.), and inside of the flashing tool select the correct set of bin files with the appropriate offsets for that specific Flash ROM size. These bin files and offsets are found in the readme file in the bin/AT subfolder of the downloaded SDK firmware files (with subfolders: noboot -> 4Mbit, 512+512 -> 8Mbit, 1024+1024 -> 16Mbit, etc.).
+In order to flash, you will need to know the Flash ROM size of your module (i.e. 4Mbit, 8Mbit, 16Mbit, etc.), and inside of the flashing tool select the correct set of bin files with the appropriate offsets for that specific Flash ROM size. These bin files and offsets are found in the readme file in the bin/AT subfolder of the downloaded SDK firmware files (with subfolders based on optional OS partitioning for OTA: noboot -> 4+Mbit (no OTA), 512+512 -> 8Mbit (OTA), 1024+1024 -> 16Mbit (OTA), etc.).
 
 Relevant links:
 * [ESP flashing tools](https://www.espressif.com/en/products/socs/esp8266ex/resources) (under Tools section)
 * [ESP AT firmware](https://www.espressif.com/en/products/socs/esp8266ex/resources) (under AT section)
-* [SDK v1.4.0 AT firmware](https://github.com/NachtRaveVL/WiFiEsp-Continued/raw/master/extra/esp_iot_sdk_v1.4.0_15_09_18.zip) direct link (last version to support blue boards)
-* [SDK v1.5.4 AT firmware](https://github.com/NachtRaveVL/WiFiEsp-Continued/raw/master/extra/esp8266_nonos_sdk_v1.5.4_16_05_20.zip) direct link (last version this library supports)
+* [SDK v1.4.0 AT firmware](https://github.com/NachtRaveVL/WiFiEsp-Continued/raw/master/extra/esp_iot_sdk_v1.4.0_15_09_18.zip) direct link (last SDK version to support blue boards)
+* [SDK v1.5.4 AT firmware](https://github.com/NachtRaveVL/WiFiEsp-Continued/raw/master/extra/esp8266_nonos_sdk_v1.5.4_16_05_20.zip) direct link (last SDK version this library *officially* supports)
 * [ESP AT firmware source](https://github.com/espressif/esp-at)
 * [ESP AT firmware docs](https://docs.espressif.com/projects/esp-at/en/release-v2.2.0.0_esp8266/index.html)
 * [flashing guide](https://www.allaboutcircuits.com/projects/flashing-the-ESP-01-firmware-to-SDK-v2.0.0-is-easier-now)
