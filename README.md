@@ -12,7 +12,7 @@ WiFiEsp-Continued library allows an Arduino board with an ESP8266 serial WiFi sh
 It can serve as either a server accepting incoming connections or a client making outgoing ones.
 The WiFiEsp-Continued library is very similar to the Arduino [WiFi](http://www.arduino.cc/en/Reference/WiFi) and [Ethernet](http://www.arduino.cc/en/Reference/Ethernet) libraries, and many of the function calls are the same. 
 
-Supports *up to* ESP Firmware SDK v1.7.5 (AT command version 0.25 and above). SDK v2+ has not been tested.
+Supports *up to* ESP Firmware SDK v1.5.4, but *should* work with AT command library v0.25 and above. SDK v2+ has not been tested.
 
 ## Features
 
@@ -28,13 +28,13 @@ The WiFiEsp-Continued library has been designed to work with the [ESP8266 WiFi m
 
 ## Flashing
 
-Be advised that all newer ESP8266 WiFi modules on market come with firmware that can take advantage of OTA updates. Custom flashing may not be needed depending on your device features. In order to flash, you will need to know the Flash size of your module (i.e. 4Mbit, 8Mbit, 16Mbit, etc.), and inside of the flashing tool select the correct set of bin files with the appropriate offsets for that specific Flash size. These bin files and offsets are found in the readme file in the bin/AT subfolder of the downloaded SDK firmware files (noboot -> 4Mbit, 512+512 -> 8Mbit, 1024+1024 -> 16Mbit, etc.).
+Be advised that all newer ESP8266 WiFi modules on market come with firmware that can take advantage of OTA updates. Custom flashing may not be needed depending on your device features. In order to flash, you will need to know the Flash ROM size of your module (i.e. 4Mbit, 8Mbit, 16Mbit, etc.), and inside of the flashing tool select the correct set of bin files with the appropriate offsets for that specific Flash ROM size. These bin files and offsets are found in the readme file in the bin/AT subfolder of the downloaded SDK firmware files (with subfolders: noboot -> 4Mbit, 512+512 -> 8Mbit, 1024+1024 -> 16Mbit, etc.).
 
 Relevant links:
 * [ESP flashing tools](https://www.espressif.com/en/products/socs/esp8266ex/resources) (under Tools section)
 * [ESP AT firmware](https://www.espressif.com/en/products/socs/esp8266ex/resources) (under AT section)
 * [SDK v1.4.0 AT firmware](https://github.com/NachtRaveVL/WiFiEsp-Continued/raw/master/extra/esp_iot_sdk_v1.4.0_15_09_18.zip) direct link (last version to support blue boards)
-* [SDK v1.7.5 AT firmware](https://github.com/NachtRaveVL/WiFiEsp-Continued/raw/master/extra/ESP8266_NonOS_AT_Bin_V1.7.5_1.zip) direct link (last version this library supports)
+* [SDK v1.5.4 AT firmware](https://github.com/NachtRaveVL/WiFiEsp-Continued/raw/master/extra/esp8266_nonos_sdk_v1.5.4_16_05_20.zip) direct link (last version this library supports)
 * [ESP AT firmware source](https://github.com/espressif/esp-at)
 * [ESP AT firmware docs](https://docs.espressif.com/projects/esp-at/en/release-v2.2.0.0_esp8266/index.html)
 * [flashing guide](https://www.allaboutcircuits.com/projects/flashing-the-ESP-01-firmware-to-SDK-v2.0.0-is-easier-now)
